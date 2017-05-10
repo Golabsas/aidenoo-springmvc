@@ -4,9 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import org.springframework.stereotype.Repository;
+
 import com.aidenoo.data.jdbc.MySQLConnector;
 
 class LoginMapper implements RowMapper<Login> {
@@ -19,6 +22,8 @@ class LoginMapper implements RowMapper<Login> {
 	}
 }
 
+@Primary
+@Repository
 public class LoginJDBC implements LoginDAO {
 	private static final String INSERT_LOGIN_QUERY = "INSERT INTO login (login, passwordx, question, reponse) VALUES(?, ?, ?, ?)";
 	private static final String DELETE_LOGIN_QUERY = "DELETE FROM login WHERE login=?";
@@ -26,6 +31,9 @@ public class LoginJDBC implements LoginDAO {
 	private static final String QUERY_ONE_LOGIN = "SELECT * FROM LOGIN WHERE login=";
 	private static final String QUERY_LOGINS = "SELECT * FROM LOGIN";
 	
+	public LoginJDBC() {
+		super();
+	}
 	
 	JdbcTemplate jdbcTemplate = new JdbcTemplate(
 			new SingleConnectionDataSource(MySQLConnector.getInstance().conn, false));

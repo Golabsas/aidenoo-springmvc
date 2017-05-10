@@ -11,6 +11,10 @@
 
     <mvc:annotation-driven />
     
+      
+    <bean id="LoginJDBC" class="com.aidenoo.data.login.LoginJDBC">
+    </bean>
+    
     <bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
