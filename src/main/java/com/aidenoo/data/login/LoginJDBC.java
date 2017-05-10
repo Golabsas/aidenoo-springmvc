@@ -26,9 +26,9 @@ class LoginMapper implements RowMapper<Login> {
 @Primary
 @Repository
 public class LoginJDBC implements LoginDAO {
-	private static final String INSERT_LOGIN_QUERY = "INSERT INTO login (login, passwordx, question, reponse) VALUES(?, ?, ?, ?)";
+	private static final String INSERT_LOGIN_QUERY = "INSERT INTO login (login, passwordx, email, role, id_compagnie) VALUES(?, ?, ?, ?, ?)";
 	private static final String DELETE_LOGIN_QUERY = "DELETE FROM login WHERE login=?";
-	private static final String UPDATE_LOGIN_QUERY = "UPDATE login SET passwordx=?, question=?, reponse=? WHERE login=?";
+	private static final String UPDATE_LOGIN_QUERY = "UPDATE login SET passwordx=?, email=?, role=?, id_compagnie=?, WHERE login=?";
 	private static final String QUERY_ONE_LOGIN = "SELECT * FROM LOGIN WHERE login=";
 	private static final String QUERY_LOGINS = "SELECT * FROM LOGIN";
 	
