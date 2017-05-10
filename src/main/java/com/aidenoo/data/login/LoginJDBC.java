@@ -17,7 +17,7 @@ class LoginMapper implements RowMapper<Login> {
 	public Login mapRow(ResultSet rs, int rowNum) throws SQLException {
 		return new Login( rs.getString("login"), 
 				rs.getString("passwordx"), 
-				rs.getString("emil"), 
+				rs.getString("email"), 
 				rs.getString("role"),
 				rs.getString("id_compagnie"));
 	}
