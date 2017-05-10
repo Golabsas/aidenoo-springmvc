@@ -2,8 +2,6 @@ package com.aidenoo.security;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,19 +17,13 @@ import com.aidenoo.data.login.LoginDAO;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
-	@Resource(name="LoginJDBC")
+	@Autowired
 	LoginDAO db;
 
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
 		
-		//LoginJDBC db = new LoginJDBC();
-		
 		List<Login> logins = db.readAll();
-
-		
-//		auth.inMemoryAuthentication().withUser("aidenoo").password("dummy")
-//				.roles("USER", "ADMIN");
 		
 		for (Login login : logins) 
 			auth.inMemoryAuthentication()
