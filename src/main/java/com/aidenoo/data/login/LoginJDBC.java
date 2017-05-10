@@ -17,8 +17,9 @@ class LoginMapper implements RowMapper<Login> {
 	public Login mapRow(ResultSet rs, int rowNum) throws SQLException {
 		return new Login( rs.getString("login"), 
 				rs.getString("passwordx"), 
-				rs.getString("question"), 
-				rs.getString("reponse"));
+				rs.getString("emil"), 
+				rs.getString("role"),
+				rs.getString("id_compagnie"));
 	}
 }
 
@@ -68,8 +69,9 @@ public class LoginJDBC implements LoginDAO {
 		int res = jdbcTemplate.update(INSERT_LOGIN_QUERY, new Object[] {
 				login.getLogin(), 
 				login.getPasswordx(), 
-				login.getQuestion(), 
-				login.getResponse()
+				login.getEmail(),
+				login.getRole(), 
+				login.getCompany()
 		});
 				
 		return (res > 0);
@@ -82,8 +84,9 @@ public class LoginJDBC implements LoginDAO {
 	public boolean update(Login login) {
 		int res = jdbcTemplate.update( UPDATE_LOGIN_QUERY, new Object[] {  
 				login.getPasswordx(), 
-				login.getQuestion(), 
-				login.getResponse(),
+				login.getEmail(), 
+				login.getRole(),
+				login.getCompany(),
 				login.getLogin()
 		});
 				

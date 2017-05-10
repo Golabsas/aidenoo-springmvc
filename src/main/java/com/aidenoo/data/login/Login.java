@@ -4,14 +4,16 @@ public class Login {
 
 	private String login;
 	private String passwordx;
-	private String question;
-	private String response;
+	private String email;
+	private String role;
+	private String company;
 	
-	public Login(String login, String passwordx, String question, String response) {
+	public Login(String login, String passwordx, String email, String role, String company) {
 		this.login = login;
 		this.passwordx = passwordx;
-		this.question = question;
-		this.response = response;
+		this.email = email;
+		this.role = role;
+		this.company = company;
 	}
 	
 	public String getLogin() {
@@ -30,26 +32,26 @@ public class Login {
 		this.passwordx = passwordx;
 	}
 
-	public String getQuestion() {
-		return question;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getResponse() {
-		return response;
+	public String getCompany() {
+		return company;
 	}
 
-	public void setResponse(String response) {
-		this.response = response;
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Login [login=%s, passwordx=%s, question=%s, response=%s]", login, passwordx, question,
-				response);
+		return String.format("Login [login=%s, passwordx=%s, email=%s, role=%s, company=%s]", login, passwordx, email,
+				role, company);
 	}
 
 	@Override
@@ -75,6 +77,14 @@ public class Login {
 		} else if (!login.equals(other.login))
 			return false;
 		return true;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	
