@@ -1,4 +1,4 @@
-package com.aidenoo.data.login;
+package com.aidenoo.data.model;
 
 public class Login {
 

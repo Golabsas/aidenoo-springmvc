@@ -1,4 +1,4 @@
-package com.aidenoo.data.login;
+package com.aidenoo.data.jdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import com.aidenoo.data.dao.LoginDAO;
+import com.aidenoo.data.model.Login;
 
 class LoginMapper implements RowMapper<Login> {
 

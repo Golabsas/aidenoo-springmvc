@@ -1,4 +1,4 @@
-package com.aidenoo.data.common;
+package com.aidenoo.data.dao;
 
 public interface Dao<T> {
 	public boolean create(T t);

@@ -9,8 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.aidenoo.data.login.Login;
-import com.aidenoo.data.login.LoginDAO;
+import com.aidenoo.data.dao.LoginDAO;
+import com.aidenoo.data.model.Login;
 
 
 @Configuration
