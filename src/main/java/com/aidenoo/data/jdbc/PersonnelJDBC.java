@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.aidenoo.data.dao.PersonnelDAO;
-import com.aidenoo.data.model.Login;
 import com.aidenoo.data.model.Personnel;
 
 
