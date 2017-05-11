@@ -25,11 +25,11 @@ class LoginMapper implements RowMapper<Login> {
 
 @Repository
 public class LoginJDBC implements LoginDAO {
-	private static final String INSERT_LOGIN_QUERY = "INSERT INTO login (login, passwordx, email, role, id_compagnie) VALUES(?, ?, ?, ?, ?)";
-	private static final String DELETE_LOGIN_QUERY = "DELETE FROM login WHERE login=?";
-	private static final String UPDATE_LOGIN_QUERY = "UPDATE login SET passwordx=?, email=?, role=?, id_compagnie=?, WHERE login=?";
-	private static final String QUERY_ONE_LOGIN = "SELECT * FROM LOGIN WHERE login=";
-	private static final String QUERY_LOGINS = "SELECT * FROM LOGIN";
+	private static final String CREATE_QUERY = "INSERT INTO login (login, passwordx, email, role, id_compagnie) VALUES(?, ?, ?, ?, ?)";
+	private static final String DELETE_QUERY = "DELETE FROM login WHERE login=?";
+	private static final String UPDATE_QUERY = "UPDATE login SET passwordx=?, email=?, role=?, id_compagnie=?, WHERE login=?";
+	private static final String _QUERY_ONCE_ = "SELECT * FROM LOGIN WHERE login=";
+	private static final String _SELECT_ALL_ = "SELECT * FROM LOGIN";
 	
 	public LoginJDBC() {
 		super();
@@ -54,7 +54,7 @@ public class LoginJDBC implements LoginDAO {
 		if (readAll().contains(login))
 			return false;
 		
-		int res = jdbcTemplate.update(INSERT_LOGIN_QUERY, new Object[] {
+		int res = jdbcTemplate.update(CREATE_QUERY, new Object[] {
 				login.getLogin(), 
 				login.getPasswordx(), 
 				login.getEmail(),
@@ -62,16 +62,16 @@ public class LoginJDBC implements LoginDAO {
 				login.getCompany()
 		});
 				
-		return (res > 0);
+		return res > 0;
 	}
 
 	public List<Login> readAll() {
-		return jdbcTemplate.query(QUERY_LOGINS, new LoginMapper());
+		return jdbcTemplate.query(_SELECT_ALL_, new LoginMapper());
 	}
 
 	@Override
 	public boolean update(Login login) {
-		int res = jdbcTemplate.update( UPDATE_LOGIN_QUERY, new Object[] {  
+		int res = jdbcTemplate.update( UPDATE_QUERY, new Object[] {  
 				login.getPasswordx(), 
 				login.getEmail(), 
 				login.getRole(),
@@ -79,19 +79,19 @@ public class LoginJDBC implements LoginDAO {
 				login.getLogin()
 		});
 				
-		return (res > 0);
+		return res > 0;
 	}
 
 	@Override
 	public boolean delete(Login login) {
-		int res = jdbcTemplate.update(DELETE_LOGIN_QUERY, login.getLogin());
+		int res = jdbcTemplate.update(DELETE_QUERY, login.getLogin());
 		
-		return (res > 0);
+		return res > 0;
 	}
 
 	@Override
 	public Login read(String login) {
-		final String SQL_QUERY_LOGIN = QUERY_ONE_LOGIN + "'"+login+"'";
+		final String SQL_QUERY_LOGIN = _QUERY_ONCE_ + "'"+login+"'";
 		List<Login> logins = jdbcTemplate.query(SQL_QUERY_LOGIN, new LoginMapper());
 		
 		return logins.get(0);
