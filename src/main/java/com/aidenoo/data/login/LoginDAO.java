@@ -2,9 +2,8 @@ package com.aidenoo.data.login;
 
 import java.util.List;
 
-public interface LoginDAO {
-	public boolean create(Login login);
+import com.aidenoo.data.common.CrudDao;
+
+public interface LoginDAO extends CrudDao<Login> {
 	public List<Login> readAll();
-	public boolean update(Login login);
-	public boolean delete(Login login);
 }

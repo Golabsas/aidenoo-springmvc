@@ -36,18 +36,16 @@ public class LoginJDBC implements LoginDAO {
 	JdbcTemplate jdbcTemplate;
 
 	public String readPassword(String login) {
-		final String SQL_QUERY_LOGIN = QUERY_ONE_LOGIN + "'"+login+"'";
-		List<Login> pwds = jdbcTemplate.query(SQL_QUERY_LOGIN , new LoginMapper());
+		Login lg = this.read(login);
 		
-		String result="ERROR_SQL_QUERY_LOGIN";
+		if ( null == lg ) {
+			return "ERROR_SQL_QUERY_PASSWORD";
+		}
 		
-		if (!pwds.isEmpty()) {
-			result = pwds.get(0).getPasswordx();
-		}	
-		
-		return result; 
+		return lg.getPasswordx();
 	}	
 	
+	@Override
 	public boolean create(Login login) {
 		
 		if (readAll().contains(login))
@@ -68,6 +66,7 @@ public class LoginJDBC implements LoginDAO {
 		return jdbcTemplate.query(QUERY_LOGINS, new LoginMapper());
 	}
 
+	@Override
 	public boolean update(Login login) {
 		int res = jdbcTemplate.update( UPDATE_LOGIN_QUERY, new Object[] {  
 				login.getPasswordx(), 
@@ -80,9 +79,18 @@ public class LoginJDBC implements LoginDAO {
 		return (res > 0);
 	}
 
+	@Override
 	public boolean delete(Login login) {
 		int res = jdbcTemplate.update(DELETE_LOGIN_QUERY, login.getLogin());
 		
 		return (res > 0);
+	}
+
+	@Override
+	public Login read(String login) {
+		final String SQL_QUERY_LOGIN = QUERY_ONE_LOGIN + "'"+login+"'";
+		List<Login> logins = jdbcTemplate.query(SQL_QUERY_LOGIN, new LoginMapper());
+		
+		return logins.get(0);
 	}
 }
