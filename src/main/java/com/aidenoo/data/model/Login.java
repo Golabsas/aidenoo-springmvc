@@ -8,7 +8,9 @@ public class Login {
 	private String role;
 	private String company;
 	
+	public Login() { super(); }
 	public Login(String login, String passwordx, String email, String role, String company) {
+		this();
 		this.login = login;
 		this.passwordx = passwordx;
 		this.email = email;
