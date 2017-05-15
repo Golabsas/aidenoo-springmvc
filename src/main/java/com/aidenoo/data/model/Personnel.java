@@ -22,11 +22,12 @@ public class Personnel {
 	private String observations;
 	private Integer specialisation;
 
+	public Personnel() { super(); }
 	public Personnel(String id, String nom, String prenom, String num_rue, String rue, String compl_rue,
 			String codepost, String ville, String pays, String localisation, String portable, String email,
 			String nationalite, String num_ss, Integer age, String garde, String diplomes, String competences,
 			String observations, Integer specialisation) {
-		super();
+		this();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
