@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import com.aidenoo.data.dao.FamservDAO;
 import com.aidenoo.data.model.Famserv;
@@ -24,6 +25,7 @@ class FamservMapper implements RowMapper<Famserv> {
 	
 };
 
+@Repository
 public class FamservJDBC implements FamservDAO {
 	private static final Logger logger = Logger.getLogger(FamservJDBC.class);
 	
@@ -57,8 +59,10 @@ public class FamservJDBC implements FamservDAO {
 	public Famserv read(String type) {
 		final String SQL_QUERY = _QUERY_ONCE_ + "'"+type+"'"; // FIX : Add idsociete 
 		List<Famserv> famservs = jdbcTemplate.query(SQL_QUERY, new FamservMapper());
+		Famserv result = famservs.get(0);
 		
-		return famservs.get(0);
+		logger.info("read(" + type + ") -> " + result.toString());
+		return result;
 	}
 
 	@Override
@@ -74,6 +78,7 @@ public class FamservJDBC implements FamservDAO {
 		int res = jdbcTemplate.update(DELETE_QUERY, new Object[] {
 				t.getType(), t.getIdsociete()
 		});
+		logger.info("delete()");
 		return res > 0;
 	}
 
