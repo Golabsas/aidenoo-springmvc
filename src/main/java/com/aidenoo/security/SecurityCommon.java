@@ -16,5 +16,10 @@ public class SecurityCommon {
 
 		return principal.toString();
 	}
+	
+	public static String retrieveLoggedUserSociete() {
+		
+		return "aidenoo";
+	}
 
 }
