@@ -2,21 +2,41 @@ package com.aidenoo.data.model;
 
 import java.util.Arrays;
 
+import javax.validation.constraints.Size;
+
 public class Sfamserv {
-	private Character[] sfam;
+	private String idsociete;
+
+	@Size(min = 2, max = 2, message = "Entrez 2 caracteres")
+	private String sfam;
+
+	@Size(min = 5, max = 100, message = "Entre 5 et 100 caracteres")
 	private String libelle;
 
-	public Sfamserv(Character[] sfam, String libelle) {
+	public Sfamserv() {
 		super();
+	}
+
+	public Sfamserv(String idsociete, String sfam, String libelle) {
+		this();
+		this.idsociete = idsociete;
 		this.sfam = sfam;
 		this.libelle = libelle;
 	}
 
-	public Character[] getSfam() {
+	public String getIdsociete() {
+		return idsociete;
+	}
+
+	public void setIdsociete(String idsociete) {
+		this.idsociete = idsociete;
+	}
+
+	public String getSfam() {
 		return sfam;
 	}
 
-	public void setSfam(Character[] sfam) {
+	public void setSfam(String sfam) {
 		this.sfam = sfam;
 	}
 
@@ -29,30 +49,8 @@ public class Sfamserv {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.hashCode(sfam);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Sfamserv other = (Sfamserv) obj;
-		if (!Arrays.equals(sfam, other.sfam))
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return String.format("Sfamserv [sfam=%s, libelle=%s]", Arrays.toString(sfam), libelle);
+		return String.format("Sfamserv [idsociete=%s, sfam=%s, libelle=%s]", idsociete, sfam, libelle);
 	}
 
 }
