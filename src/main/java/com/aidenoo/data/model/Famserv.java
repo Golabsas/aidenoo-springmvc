@@ -50,4 +50,43 @@ public class Famserv {
 	public String toString() {
 		return String.format("Famserv [idsociete=%s, type=%s, libelle=%s]", idsociete, type, libelle);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idsociete == null) ? 0 : idsociete.hashCode());
+		result = prime * result + ((libelle == null) ? 0 : libelle.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Famserv other = (Famserv) obj;
+		if (idsociete == null) {
+			if (other.idsociete != null)
+				return false;
+		} else if (!idsociete.equals(other.idsociete))
+			return false;
+		if (libelle == null) {
+			if (other.libelle != null)
+				return false;
+		} else if (!libelle.equals(other.libelle))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
+	}
+	
+	
 }
