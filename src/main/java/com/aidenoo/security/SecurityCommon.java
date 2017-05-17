@@ -19,7 +19,7 @@ public class SecurityCommon {
 	
 	public static String retrieveLoggedUserSociete() {
 		
-		return "aidenoo";
+		return "aidenous";
 	}
 
 }
