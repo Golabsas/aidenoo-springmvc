@@ -13,9 +13,11 @@ public class WelcomeController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String showLoginPage(ModelMap model) {
 		String userName = SecurityCommon.retrieveLoggedUserName();
+		String idSociete = SecurityCommon.retrieveLoggedUserSociete();
 
 		model.addAttribute("activeHome", "active");
 		model.addAttribute("name", userName);
+		model.addAttribute("society", idSociete);
 		return "welcome";
 	}
 }
