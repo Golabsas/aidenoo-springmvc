@@ -60,8 +60,8 @@ public class FamservJDBC implements FamservDAO {
 
 	@Override
 	public Famserv read(String type) {
-		final String SQL_QUERY = _QUERY_ONCE_ + "'"+type+"'" + " AND idsociete=" 
-				+ SecurityCommon.retrieveLoggedUserSociete(); // FIX : Add idsociete 
+		final String SQL_QUERY = _QUERY_ONCE_ + "'"+type+"'" + 
+				" AND idsociete='" + SecurityCommon.retrieveLoggedUserSociete() + "'"; 
 		
 		List<Famserv> famservs = jdbcTemplate.query(SQL_QUERY, new FamservMapper());
 		Famserv result = famservs.get(0);
