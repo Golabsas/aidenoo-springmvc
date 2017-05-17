@@ -10,8 +10,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.aidenoo.data.dao.FamservDAO;
+import com.aidenoo.data.Famserv.FamservDAO;
 import com.aidenoo.data.model.Famserv;
+import com.aidenoo.security.SecurityCommon;
 
 class FamservMapper implements RowMapper<Famserv> {
 
@@ -47,6 +48,7 @@ public class FamservJDBC implements FamservDAO {
 		int res = jdbcTemplate.update(CREATE_QUERY, new Object[] {
 				t.getIdsociete(), t.getType(), t.getLibelle()
 		});
+		logger.info("readAll()");
 		return res > 0;
 	}
 
@@ -57,7 +59,9 @@ public class FamservJDBC implements FamservDAO {
 
 	@Override
 	public Famserv read(String type) {
-		final String SQL_QUERY = _QUERY_ONCE_ + "'"+type+"'"; // FIX : Add idsociete 
+		final String SQL_QUERY = _QUERY_ONCE_ + "'"+type+"'" + " AND idsociete=" 
+				+ SecurityCommon.retrieveLoggedUserSociete(); // FIX : Add idsociete 
+		
 		List<Famserv> famservs = jdbcTemplate.query(SQL_QUERY, new FamservMapper());
 		Famserv result = famservs.get(0);
 		
@@ -70,6 +74,7 @@ public class FamservJDBC implements FamservDAO {
 		int res = jdbcTemplate.update(UPDATE_QUERY, new Object[] {
 				t.getLibelle(), t.getType(), t.getIdsociete()
 		});
+		logger.info("update()" + t.toString());
 		return res > 0;
 	}
 
@@ -78,7 +83,7 @@ public class FamservJDBC implements FamservDAO {
 		int res = jdbcTemplate.update(DELETE_QUERY, new Object[] {
 				t.getType(), t.getIdsociete()
 		});
-		logger.info("delete()");
+		logger.info("delete()" + t.toString());
 		return res > 0;
 	}
 
