@@ -48,12 +48,13 @@ public class FamservJDBC implements FamservDAO {
 		int res = jdbcTemplate.update(CREATE_QUERY, new Object[] {
 				t.getIdsociete(), t.getType(), t.getLibelle()
 		});
-		logger.info("readAll()");
+		logger.info("create()" + t.toString());
 		return res > 0;
 	}
 
 	@Override
 	public List<Famserv> readAll() {
+		logger.info("readAll()");
 		return jdbcTemplate.query(_SELECT_ALL_, new FamservMapper());
 	}
 
