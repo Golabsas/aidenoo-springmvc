@@ -16,7 +16,7 @@
 				<c:forEach items="${famservs}" var="famserv">
 					<tr>
 						<td>${famserv.idsociete}</td>
-						<td>${famserv.type}"</td>
+						<td>${famserv.type}</td>
 						<td>${famserv.libelle}</td>
 						<td><a href="/update-famserv?type=${famserv.type}"
 							class="btn btn-success">Update</a> <a
