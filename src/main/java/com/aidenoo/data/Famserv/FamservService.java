@@ -1,5 +1,6 @@
 package com.aidenoo.data.Famserv;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +15,36 @@ public class FamservService {
 	@Autowired
 	private FamservDAO famservdb;
 	
-	public List<Famserv> ListFamserv() {
-		return famservdb.readAll();
+	public List<Famserv> lists() {	
+		String idSociete = SecurityCommon.retrieveLoggedUserSociete();
+		List<Famserv> list = this.famservdb.readAll();
+
+		removeOthersSociety(list, idSociete);
+		
+		return list;
+	}
+
+	private void removeOthersSociety(List<Famserv> list, String idSociete) {
+		Iterator<Famserv> it = list.iterator();
+		
+		while(it.hasNext()) {
+			Famserv fam = it.next();
+			if (!fam.getIdsociete().equals(idSociete)) {
+				it.remove();
+			}
+		}
 	}
 	
-	public void addFamserv() {
-		String idsociete = SecurityCommon.retrieveLoggedUserSociete();
-		
-		// TODO : a finir
+	public void add(Famserv famserv) {
+		this.famservdb.create(famserv);
+	}
+	
+	public void update(Famserv famserv) {
+		this.famservdb.update(famserv);
 	}
 	
 	public void delete(String type) {
-		famservdb.delete(famservdb.read(type));
+		this.famservdb.delete(famservdb.read(type));
 	}
 
 }
