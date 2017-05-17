@@ -11,12 +11,12 @@
     </appender>
     
     <logger name="org.springframework" additivity="false">
-        <level value="INFO"/>
+        <level value="ERROR"/>
         <appender-ref ref="STDOUT"/>
     </logger>
     
     <logger name="com.aidenoo" additivity="false">
-        <level value="DEBUG"/>
+        <level value="INFO"/>
         <appender-ref ref="STDOUT"/>
     </logger>
 
