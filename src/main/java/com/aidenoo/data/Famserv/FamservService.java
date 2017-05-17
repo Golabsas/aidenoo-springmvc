@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aidenoo.data.dao.FamservDAO;
 import com.aidenoo.data.model.Famserv;
 import com.aidenoo.security.SecurityCommon;
 
