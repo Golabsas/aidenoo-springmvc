@@ -5,13 +5,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.jboss.logging.LoggerProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.aidenoo.data.dao.ServicesDAO;
-import com.aidenoo.data.model.Famserv;
 import com.aidenoo.data.model.Services;
 
 

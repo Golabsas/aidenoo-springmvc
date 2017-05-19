@@ -10,8 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.aidenoo.data.Famserv.Famserv;
 import com.aidenoo.data.Famserv.FamservDAO;
-import com.aidenoo.data.model.Famserv;
 import com.aidenoo.security.SecurityCommon;
 
 class FamservMapper implements RowMapper<Famserv> {

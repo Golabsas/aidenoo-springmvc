@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aidenoo.data.model.Famserv;
 import com.aidenoo.security.SecurityCommon;
 
 @Service
@@ -15,8 +14,12 @@ public class FamservService {
 	@Autowired
 	private FamservDAO famservdb;
 	
-	public List<Famserv> lists() {	
-		String idSociete = SecurityCommon.retrieveLoggedUserSociete();
+	
+	public Famserv retrieve(String type) {
+		return this.famservdb.read(type);
+	}
+	
+	public List<Famserv> listOnly(String idSociete) {	
 		List<Famserv> list = this.famservdb.readAll();
 
 		removeOthersSociety(list, idSociete);
@@ -43,8 +46,8 @@ public class FamservService {
 		this.famservdb.update(famserv);
 	}
 	
-	public void delete(String type) {
-		this.famservdb.delete(famservdb.read(type));
+	public void delete(Famserv famserv) {
+		this.famservdb.delete(famserv);
 	}
 
 }

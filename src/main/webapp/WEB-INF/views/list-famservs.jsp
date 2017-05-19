@@ -6,21 +6,21 @@
 			<caption>Famserv</caption>
 			<thead>
 				<tr>
-					<th>idSociete</th>
+		 		<th>id</th> 
 					<th>Type</th>
 					<th>Libelle</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${famservs}" var="famserv">
+				<c:forEach items="${famservs}" var="famserv" varStatus="count">
 					<tr>
-						<td>${famserv.idsociete}</td>
+			  			<td>${count.count}</td> 
 						<td>${famserv.type}</td>
 						<td>${famserv.libelle}</td>
-						<td><a href="/update-famserv?type=${famserv.type}"
+						<td><a href="/update-famserv?id=${count.count}"
 							class="btn btn-success">Update</a> <a
-							href="/delete-famserv?type=${famserv.type}" class="btn btn-danger">Delete</a>
+							href="/delete-famserv?id=${count.count}" class="btn btn-danger">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>
