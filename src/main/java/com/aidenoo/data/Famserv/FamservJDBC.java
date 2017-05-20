@@ -1,4 +1,4 @@
-package com.aidenoo.data.jdbc;
+package com.aidenoo.data.Famserv;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.aidenoo.data.Famserv.Famserv;
-import com.aidenoo.data.Famserv.FamservDAO;
 import com.aidenoo.security.SecurityCommon;
 
 class FamservMapper implements RowMapper<Famserv> {
