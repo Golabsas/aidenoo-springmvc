@@ -2,6 +2,8 @@ package com.aidenoo.data.Famserv;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,21 +23,10 @@ public class FamservService {
 	
 	public List<Famserv> listOnly(String idSociete) {	
 		List<Famserv> list = this.famservdb.readAll();
-
-		removeOthersSociety(list, idSociete);
 		
-		return list;
-	}
-
-	private void removeOthersSociety(List<Famserv> list, String idSociete) {
-		Iterator<Famserv> it = list.iterator();
-		
-		while(it.hasNext()) {
-			Famserv fam = it.next();
-			if (!fam.getIdsociete().equals(idSociete)) {
-				it.remove();
-			}
-		}
+		return list.stream()
+			.filter(f -> f.getIdsociete().equals(idSociete))
+			.collect(Collectors.toList());
 	}
 	
 	public void add(Famserv famserv) {
