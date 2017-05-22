@@ -31,9 +31,9 @@ public class FamservController {
 	}
 
 	@RequestMapping(value = "/delete-famserv", method = RequestMethod.GET)
-	public String removeFamserv(@RequestParam int id, ModelMap model) {
+	public String removeFamserv(@RequestParam int index, ModelMap model) {
 		
-		service.delete(famservs.get(validId(id)));
+		service.delete(famservs.get(validIndex(index)));
 		return "redirect:list-famservs";
 	}
 
@@ -58,22 +58,21 @@ public class FamservController {
 	}
 
 	@RequestMapping(value = "/update-famserv", method = RequestMethod.GET)
-	public String updateFamserv(@RequestParam int id, ModelMap model) {
+	public String updateFamserv(@RequestParam int index, ModelMap model) {
 		
-		Famserv famserv = famservs.get(validId(id));
+		Famserv famserv = famservs.get(validIndex(index));
 
 		model.clear();
 		model.addAttribute("famserv", famserv);
 		return "famserv";
 	}
 
-	private int validId(int id) {
-		int nId = id - 1;
+	private int validIndex(int index) {
 		
-		if (nId < 0 || nId >= famservs.size())
-			throw new RuntimeException("Invalid id");
+		if (index < 0 || index >= famservs.size())
+			throw new RuntimeException("Invalid index");
 		
-		return nId;
+		return index;
 	}
 
 	@RequestMapping(value = "/update-famserv", method = RequestMethod.POST)
