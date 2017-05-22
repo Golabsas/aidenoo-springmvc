@@ -60,7 +60,7 @@ public class PersonnelJDBC implements PersonnelDAO {
 	}
 
 	@Override
-	public Personnel read(String id) {
+	public Personnel search(String id) {
 		final String SQL_QUERY = _QUERY_ONCE_ + "'"+id+"'";
 		List<Personnel> personnels = jdbcTemplate.query(SQL_QUERY, new PersonnelMapper());
 		
@@ -82,7 +82,7 @@ public class PersonnelJDBC implements PersonnelDAO {
 	}
 
 	@Override
-	public List<Personnel> readAll() {
+	public List<Personnel> read() {
 		return jdbcTemplate.query(_SELECT_ALL_, new PersonnelMapper());
 	}
 

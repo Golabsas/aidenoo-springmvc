@@ -42,7 +42,7 @@ public class ServicesJDBC implements ServicesDAO {
 
 	@Override
 	public boolean create(Services t) {
-		if (this.readAll().contains(t))
+		if (this.read().contains(t))
 			return false;
 		
 		int res = jdbcTemplate.update(CREATE_QUERY, new Object[] {
@@ -53,7 +53,7 @@ public class ServicesJDBC implements ServicesDAO {
 	}
 
 	@Override
-	public Services read(String type) {
+	public Services search(String type) {
 		final String SQL_QUERY = _QUERY_ONCE_ + "'"+type+"'"; // FIX : Add idsociete 
 		List<Services> services = jdbcTemplate.query(SQL_QUERY, new ServicesMapper());
 		
@@ -78,7 +78,7 @@ public class ServicesJDBC implements ServicesDAO {
 	}
 
 	@Override
-	public List<Services> readAll() {
+	public List<Services> read() {
 		return jdbcTemplate.query(_SELECT_ALL_, new ServicesMapper());
 	}
 

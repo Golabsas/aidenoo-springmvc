@@ -43,7 +43,7 @@ public class LoginJDBC implements LoginDAO {
 	JdbcTemplate jdbcTemplate;
 
 	public String readPassword(String login) {
-		Login lg = this.read(login);
+		Login lg = this.search(login);
 		
 		if ( null == lg ) {
 			return "ERROR_SQL_QUERY_PASSWORD";
@@ -57,7 +57,7 @@ public class LoginJDBC implements LoginDAO {
 	@Override
 	public boolean create(Login login) {
 		
-		if (readAll().contains(login))
+		if (read().contains(login))
 			return false;
 		
 		int res = jdbcTemplate.update(CREATE_QUERY, new Object[] {
@@ -73,7 +73,7 @@ public class LoginJDBC implements LoginDAO {
 		return res > 0;
 	}
 
-	public List<Login> readAll() {
+	public List<Login> read() {
 		logger.info("readAll()");
 		return jdbcTemplate.query(_SELECT_ALL_, new LoginMapper());
 	}
@@ -103,7 +103,7 @@ public class LoginJDBC implements LoginDAO {
 	}
 
 	@Override
-	public Login read(String login) {
+	public Login search(String login) {
 		final String SQL_QUERY_LOGIN = _QUERY_ONCE_ + "'"+login+"'";
 		List<Login> logins = jdbcTemplate.query(SQL_QUERY_LOGIN, new LoginMapper());
 		

@@ -1,8 +1,11 @@
 package com.aidenoo.data.dao;
 
-public interface Dao<T> {
+import java.util.List;
+
+public interface IDao<T> {
 	public boolean create(T t);
-	public T read(String name);
+	public T search(String name);
 	public boolean update(T t);
 	public boolean delete(T t);
+	public List<T> read();
 }

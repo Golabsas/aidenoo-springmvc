@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.aidenoo.data.model.Sfamserv;
 
-public interface SfamservDAO extends Dao<Sfamserv> {
-	public List<Sfamserv> readAll();
+public interface SfamservDAO extends IDao<Sfamserv> {
 
 }

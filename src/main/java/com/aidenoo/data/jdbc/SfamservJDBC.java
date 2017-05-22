@@ -39,7 +39,7 @@ public class SfamservJDBC implements SfamservDAO {
 	@Override
 	public boolean create(Sfamserv t) {
 		
-		if (readAll().contains(t))
+		if (read().contains(t))
 			return false;
 		
 		int res = jdbcTemplate.update(CREATE_QUERY, new Object[] {
@@ -49,12 +49,12 @@ public class SfamservJDBC implements SfamservDAO {
 	}
 
 	@Override
-	public List<Sfamserv> readAll() {
+	public List<Sfamserv> read() {
 		return jdbcTemplate.query(_SELECT_ALL_, new SfamservMapper());
 	}
 
 	@Override
-	public Sfamserv read(String sfam) {
+	public Sfamserv search(String sfam) {
 		final String SQL_QUERY = _QUERY_ONCE_ + "'"+sfam+"'"; // FIX : Add idsociete 
 		List<Sfamserv> sfamservs = jdbcTemplate.query(SQL_QUERY, new SfamservMapper());
 		

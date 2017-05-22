@@ -23,7 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
 		
-		List<Login> logins = db.readAll();
+		List<Login> logins = db.read();
 		
 		for (Login login : logins) 
 			auth.inMemoryAuthentication()

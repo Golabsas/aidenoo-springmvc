@@ -40,7 +40,7 @@ public class FamservJDBC implements FamservDAO {
 	@Override
 	public boolean create(Famserv t) {
 		
-		if (readAll().contains(t))
+		if (read().contains(t))
 			return false;
 		
 		int res = jdbcTemplate.update(CREATE_QUERY, new Object[] {
@@ -51,7 +51,7 @@ public class FamservJDBC implements FamservDAO {
 	}
 
 	@Override
-	public List<Famserv> readAll() {
+	public List<Famserv> read() {
 		logger.info("readAll()");
 		return jdbcTemplate.query(
 				_SELECT_ALL_ + "'" + SecurityCommon.retrieveLoggedUserSociete() + "'" , 
@@ -59,7 +59,7 @@ public class FamservJDBC implements FamservDAO {
 	}
 
 	@Override
-	public Famserv read(String type) {
+	public Famserv search(String type) {
 		final String SQL_QUERY = _QUERY_ONCE_ + "'"+type+"'" + 
 				" AND idsociete='" + SecurityCommon.retrieveLoggedUserSociete() + "'"; 
 		

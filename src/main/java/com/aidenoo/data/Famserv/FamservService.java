@@ -13,11 +13,11 @@ public class FamservService {
 	
 	
 	public Famserv retrieve(String type) {
-		return this.famservdb.read(type);
+		return this.famservdb.search(type);
 	}
 	
 	public List<Famserv> listAll() {	
-		return this.famservdb.readAll();
+		return this.famservdb.read();
 	}
 	
 	public void add(Famserv famserv) {
