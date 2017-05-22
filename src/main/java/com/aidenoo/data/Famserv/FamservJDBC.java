@@ -36,6 +36,9 @@ public class FamservJDBC implements FamservDAO {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private SecurityCommon security;
 
 	@Override
 	public boolean create(Famserv t) {
@@ -54,14 +57,14 @@ public class FamservJDBC implements FamservDAO {
 	public List<Famserv> read() {
 		logger.info("readAll()");
 		return jdbcTemplate.query(
-				_SELECT_ALL_ + "'" + SecurityCommon.retrieveLoggedUserSociete() + "'" , 
+				_SELECT_ALL_ + "'" + security.retrieveLoggedUserSociete() + "'" , 
 				new FamservMapper());
 	}
 
 	@Override
 	public Famserv search(String type) {
 		final String SQL_QUERY = _QUERY_ONCE_ + "'"+type+"'" + 
-				" AND idsociete='" + SecurityCommon.retrieveLoggedUserSociete() + "'"; 
+				" AND idsociete='" + security.retrieveLoggedUserSociete() + "'"; 
 		
 		List<Famserv> famservs = jdbcTemplate.query(SQL_QUERY, new FamservMapper());
 		Famserv result = famservs.get(0);
