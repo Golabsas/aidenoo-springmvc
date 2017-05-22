@@ -39,6 +39,7 @@ public class LoginJDBC implements LoginDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
+	@Override
 	public String readPassword(String login) {
 		Login lg = this.search(login);
 		
@@ -106,5 +107,18 @@ public class LoginJDBC implements LoginDAO {
 		
 		logger.info("read()");
 		return logins.get(0);
+	}
+
+	@Override
+	public String readSociete(String login) {
+		Login lg = this.search(login);
+		
+		if ( null == lg ) {
+			return "ERROR_SQL_QUERY_SOCIETY";
+		}
+		
+		logger.info("readSociete()");
+		
+		return lg.getIdsociete();
 	}
 }
