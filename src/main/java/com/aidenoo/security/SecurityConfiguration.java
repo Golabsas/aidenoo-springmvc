@@ -25,11 +25,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		
 		List<Login> logins = db.read();
 		
-		for (Login login : logins) 
+		for (Login login : logins) {
 			auth.inMemoryAuthentication()
 				.withUser(login.getLogin())
 				.password(login.getPasswordx())
-				.roles("USER");	
+				.roles("USER");
+		}
 	}
 
 	@Override
