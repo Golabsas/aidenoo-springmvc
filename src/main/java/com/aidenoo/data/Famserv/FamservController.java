@@ -24,8 +24,7 @@ public class FamservController {
 
 	@RequestMapping(value = "/list-famservs")
 	public String listFamserv(ModelMap model) {
-		String idSociete = SecurityCommon.retrieveLoggedUserSociete();
-		famservs = service.listOnly(idSociete);
+		famservs = service.listAll();
 		model.addAttribute("famservs", famservs);
 		return "list-famservs";
 	}

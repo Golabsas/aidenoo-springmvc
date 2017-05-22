@@ -32,7 +32,7 @@ public class FamservJDBC implements FamservDAO {
 	private static final String DELETE_QUERY = "DELETE FROM famserv WHERE type=? AND idsociete=?";
 	private static final String UPDATE_QUERY = "UPDATE famserv SET libelle=? WHERE type=? AND idsociete=?";
 	private static final String _QUERY_ONCE_ = "SELECT * FROM famserv WHERE type=";
-	private static final String _SELECT_ALL_ = "SELECT * FROM famserv";
+	private static final String _SELECT_ALL_ = "SELECT * FROM famserv WHERE idsociete=";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -53,7 +53,9 @@ public class FamservJDBC implements FamservDAO {
 	@Override
 	public List<Famserv> readAll() {
 		logger.info("readAll()");
-		return jdbcTemplate.query(_SELECT_ALL_, new FamservMapper());
+		return jdbcTemplate.query(
+				_SELECT_ALL_ + "'" + SecurityCommon.retrieveLoggedUserSociete() + "'" , 
+				new FamservMapper());
 	}
 
 	@Override

@@ -16,12 +16,8 @@ public class FamservService {
 		return this.famservdb.read(type);
 	}
 	
-	public List<Famserv> listOnly(String idSociete) {	
-		List<Famserv> list = this.famservdb.readAll();
-		
-		return list.stream()
-			.filter(f -> f.getIdsociete().equals(idSociete))
-			.collect(Collectors.toList());
+	public List<Famserv> listAll() {	
+		return this.famservdb.readAll();
 	}
 	
 	public void add(Famserv famserv) {
