@@ -1,7 +1,5 @@
 package com.aidenoo.data.model;
 
-import java.util.Arrays;
-
 import javax.validation.constraints.Size;
 
 public class Sfamserv {
