@@ -8,6 +8,7 @@
 			<li class="${activeHome}"><a href="/">Home</a></li>
 			<li class="${activeTodos}"><a href="/list-todos">Todos</a></li>
 			<li class="${activeFamserv}"><a href="/list-famservs">Famserv</a></li>
+			<li class="${activeSfamserv}"><a href="/list-sfamservs">Sfamserv</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="/logout">Logout</a></li>
