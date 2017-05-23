@@ -19,10 +19,7 @@ public class SfamservController {
 
 	@Autowired
 	SfamservService service;
-	
-	@Autowired
-	private SecurityCommon security;
-	
+
 	private List<Sfamserv> sfamservs;
 
 	@RequestMapping(value = "/list-sfamservs")
@@ -52,7 +49,7 @@ public class SfamservController {
 			return "sfamserv";
 		}
 
-		sfamserv.setIdsociete(security.retrieveLoggedUserSociete());
+		sfamserv.setIdsociete(SecurityCommon.retrieveLoggedUserSociete());
 
 		service.add(sfamserv);
 		model.clear();
@@ -84,7 +81,7 @@ public class SfamservController {
 			return "sfamserv";
 		}
 
-		sfamserv.setIdsociete(security.retrieveLoggedUserSociete());
+		sfamserv.setIdsociete(SecurityCommon.retrieveLoggedUserSociete());
 
 		service.update(sfamserv);
 		model.clear();

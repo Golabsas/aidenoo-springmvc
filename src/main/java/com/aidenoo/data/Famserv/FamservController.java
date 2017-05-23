@@ -20,9 +20,6 @@ public class FamservController {
 	@Autowired
 	FamservService service;
 	
-	@Autowired
-	private SecurityCommon security;
-	
 	private List<Famserv> famservs;
 
 	@RequestMapping(value = "/list-famservs")
@@ -52,7 +49,7 @@ public class FamservController {
 			return "famserv";
 		}
 
-		famserv.setIdsociete(security.retrieveLoggedUserSociete());
+		famserv.setIdsociete(SecurityCommon.retrieveLoggedUserSociete());
 
 		service.add(famserv);
 		model.clear();
@@ -84,7 +81,7 @@ public class FamservController {
 			return "famserv";
 		}
 
-		famserv.setIdsociete(security.retrieveLoggedUserSociete());
+		famserv.setIdsociete(SecurityCommon.retrieveLoggedUserSociete());
 
 		service.update(famserv);
 		model.clear();

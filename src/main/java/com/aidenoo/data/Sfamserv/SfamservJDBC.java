@@ -36,9 +36,6 @@ public class SfamservJDBC implements SfamservDAO {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
-	@Autowired
-	private SecurityCommon security;
 
 	@Override
 	public boolean create(Sfamserv t) {
@@ -57,14 +54,14 @@ public class SfamservJDBC implements SfamservDAO {
 	public List<Sfamserv> read() {
 		logger.info("readAll()");
 		return jdbcTemplate.query(
-				_SELECT_ALL_ + "'" + security.retrieveLoggedUserSociete() + "'" , 
+				_SELECT_ALL_ + "'" + SecurityCommon.retrieveLoggedUserSociete() + "'" , 
 				new FamservMapper());
 	}
 
 	@Override
 	public Sfamserv search(String sfam) {
 		final String SQL_QUERY = _QUERY_ONCE_ + "'"+sfam+"'" + 
-				" AND idsociete='" + security.retrieveLoggedUserSociete() + "'"; 
+				" AND idsociete='" + SecurityCommon.retrieveLoggedUserSociete() + "'"; 
 		
 		List<Sfamserv> famservs = jdbcTemplate.query(SQL_QUERY, new FamservMapper());
 		Sfamserv result = famservs.get(0);
