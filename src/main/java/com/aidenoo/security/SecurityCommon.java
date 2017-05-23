@@ -9,8 +9,8 @@ public class SecurityCommon {
 		Object principal = SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
 		
-		if (principal instanceof AidenooUser)
-			return ((AidenooUser) principal).getLogin();
+		if (principal instanceof LoggedUser)
+			return ((LoggedUser) principal).getLogin();
 		
 		return principal.toString();
 	}
@@ -19,8 +19,8 @@ public class SecurityCommon {
 		Object principal = SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
 		
-		if (principal instanceof AidenooUser)
-			return ((AidenooUser) principal).getIdSociete();
+		if (principal instanceof LoggedUser)
+			return ((LoggedUser) principal).getIdSociete();
 		
 		return principal.toString();
 	}

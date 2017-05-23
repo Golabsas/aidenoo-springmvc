@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import com.aidenoo.data.Login.LoginDAO;
 
 @Service("userDetailsService")
-public class AidenooUserDetail implements UserDetailsService {
+public class LoggedUserDetail implements UserDetailsService {
 	
 	@Autowired
 	LoginDAO db;
@@ -22,19 +22,19 @@ public class AidenooUserDetail implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		AidenooUser aidenooUser = null;
+		LoggedUser aidenooUser = null;
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		
 		if(!"".equals(username)) {
 			
 			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 			
-			aidenooUser = new AidenooUser(username, 
+			aidenooUser = new LoggedUser(username, 
 					db.readPassword(username), true, true, true, true, authorities, 
 					username, db.readSociete(username));
 			
 		} else {
-			aidenooUser = new AidenooUser("NA", "NA", true, true, true, true, authorities, null, null);
+			aidenooUser = new LoggedUser("NA", "NA", true, true, true, true, authorities, null, null);
 		}
 		
 		return aidenooUser;
