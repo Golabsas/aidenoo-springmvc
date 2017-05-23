@@ -27,6 +27,8 @@ public class LoggedUserDetail implements UserDetailsService {
 		
 		if(!"".equals(username)) {
 			
+			// TODO: Verifier que le login entrer est dans la BDD
+			
 			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 			
 			aidenooUser = new LoggedUser(username, 
