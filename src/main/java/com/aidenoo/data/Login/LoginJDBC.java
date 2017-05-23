@@ -49,7 +49,7 @@ public class LoginJDBC implements LoginDAO {
 		
 		String passwordx = lg.getPasswordx();
 		
-		logger.info("readPassword( + " + login + " + ) : " + "[PROTECTED]");
+		logger.info("readPassword( " + login + " ) : " + "[PROTECTED]");
 		return passwordx;
 	}	
 	
@@ -106,7 +106,7 @@ public class LoginJDBC implements LoginDAO {
 		
 		List<Login> logins = jdbcTemplate.query(SQL_QUERY_LOGIN, new LoginMapper());
 		
-		logger.info("search( + " + login + " +)");
+		logger.info("search( " + login + " )");
 		return logins.get(0);
 	}
 
@@ -120,7 +120,7 @@ public class LoginJDBC implements LoginDAO {
 		
 		String idsociete = lg.getIdsociete();
 		
-		logger.info("readSociete( + " + login + " + ) : " + idsociete);
+		logger.info("readSociete( " + login + " ) : " + idsociete);
 		return idsociete;
 	}
 }
