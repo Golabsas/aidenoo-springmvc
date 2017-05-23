@@ -47,9 +47,10 @@ public class LoginJDBC implements LoginDAO {
 			return "ERROR_SQL_QUERY_PASSWORD";
 		}
 		
-		logger.info("readPassword()");
+		String passwordx = lg.getPasswordx();
 		
-		return lg.getPasswordx();
+		logger.info("readPassword( + " + login + " + ) : " + "[PROTECTED]");
+		return passwordx;
 	}	
 	
 	@Override
@@ -64,7 +65,6 @@ public class LoginJDBC implements LoginDAO {
 				login.getPasswordx(), 
 				login.getEmail(),
 				login.getRole() 
-				
 		});
 				
 		logger.info("Create()");
@@ -72,7 +72,7 @@ public class LoginJDBC implements LoginDAO {
 	}
 
 	public List<Login> read() {
-		logger.info("readAll()");
+		logger.info("read()");
 		return jdbcTemplate.query(_SELECT_ALL_, new LoginMapper());
 	}
 
@@ -103,9 +103,10 @@ public class LoginJDBC implements LoginDAO {
 	@Override
 	public Login search(String login) {
 		final String SQL_QUERY_LOGIN = _QUERY_ONCE_ + "'"+login+"'";
+		
 		List<Login> logins = jdbcTemplate.query(SQL_QUERY_LOGIN, new LoginMapper());
 		
-		logger.info("read()");
+		logger.info("search( + " + login + " +)");
 		return logins.get(0);
 	}
 
@@ -117,8 +118,9 @@ public class LoginJDBC implements LoginDAO {
 			return "ERROR_SQL_QUERY_SOCIETY";
 		}
 		
-		logger.info("readSociete()");
+		String idsociete = lg.getIdsociete();
 		
-		return lg.getIdsociete();
+		logger.info("readSociete( + " + login + " + ) : " + idsociete);
+		return idsociete;
 	}
 }
