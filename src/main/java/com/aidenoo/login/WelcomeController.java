@@ -10,14 +10,22 @@ import com.aidenoo.security.SecurityCommon;
 @Controller
 public class WelcomeController {
 
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showLoginPage(ModelMap model) {
-		String userName = SecurityCommon.retrieveLoggedUserName();
-		String idSociete = SecurityCommon.retrieveLoggedUserSociete();
 
-		model.addAttribute("activeHome", "active");
-		model.addAttribute("name", userName);
-		model.addAttribute("society", idSociete);
-		return "welcome";
+		String view = "welcome";
+
+		try {
+			String userName = SecurityCommon.retrieveLoggedUserName();
+			String idSociete = SecurityCommon.retrieveLoggedUserSociete();
+
+			model.addAttribute("activeHome", "active");
+			model.addAttribute("name", userName);
+			model.addAttribute("society", idSociete);
+		} catch (RuntimeException e) {
+			view = "redirect:logout";
+		}
+
+		return view;
 	}
 }

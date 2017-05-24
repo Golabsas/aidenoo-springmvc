@@ -11,8 +11,8 @@ public class SecurityCommon {
 		
 		if (principal instanceof LoggedUser)
 			return ((LoggedUser) principal).getLogin();
-		
-		return principal.toString();
+		else
+			throw new RuntimeException("Impossible de recuperrer idSociete");
 	}
 	
 	public static String retrieveLoggedUserSociete() {
@@ -21,8 +21,8 @@ public class SecurityCommon {
 		
 		if (principal instanceof LoggedUser)
 			return ((LoggedUser) principal).getIdSociete();
-		
-		return principal.toString();
+		else
+			throw new RuntimeException("Impossible de recuperer idSociete");
 	}
 
 }
