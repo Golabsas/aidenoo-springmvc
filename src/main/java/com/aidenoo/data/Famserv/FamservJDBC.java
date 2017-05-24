@@ -46,13 +46,14 @@ public class FamservJDBC implements FamservDAO {
 		int res = jdbcTemplate.update(CREATE_QUERY, new Object[] {
 				t.getIdsociete(), t.getType(), t.getLibelle()
 		});
+		
 		logger.info("create()" + t.toString());
 		return res > 0;
 	}
 
 	@Override
 	public List<Famserv> read() {
-		logger.info("readAll()");
+		logger.info("read()");
 		return jdbcTemplate.query(
 				_SELECT_ALL_ + "'" + SecurityCommon.retrieveLoggedUserSociete() + "'" , 
 				new FamservMapper());
@@ -75,6 +76,7 @@ public class FamservJDBC implements FamservDAO {
 		int res = jdbcTemplate.update(UPDATE_QUERY, new Object[] {
 				t.getLibelle(), t.getType(), t.getIdsociete()
 		});
+		
 		logger.info("update()" + t.toString());
 		return res > 0;
 	}
@@ -84,6 +86,7 @@ public class FamservJDBC implements FamservDAO {
 		int res = jdbcTemplate.update(DELETE_QUERY, new Object[] {
 				t.getType(), t.getIdsociete()
 		});
+		
 		logger.info("delete()" + t.toString());
 		return res > 0;
 	}
