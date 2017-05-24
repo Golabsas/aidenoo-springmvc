@@ -36,6 +36,8 @@
 			<ref bean="dataSource" />
 		</constructor-arg>
 	</bean>
+	
+	<bean id="customUserDetailsService" class ="com.aidenoo.security.LoggedUserDetail"/>
 
 	<context:property-placeholder location="classpath:jdbc.properties" />
 

@@ -22,8 +22,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	LoginDAO db;
 	
-    @Autowired
-    @Qualifier("userDetailsService")
+	@Autowired
+    @Qualifier("customUserDetailsService")
     private UserDetailsService userDetailsService;
     
     @Autowired
