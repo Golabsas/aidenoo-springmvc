@@ -1,7 +1,9 @@
-package com.aidenoo.data.model;
+package com.aidenoo.data.grouptarifs;
 
 public class Grouptarifs {
+	private String idsociete;
 	private String groupe;
+	private String libelle;
 	private Float tarifjour;
 	private Float tarifnuit;
 	private Float tarifjdf;
@@ -12,10 +14,17 @@ public class Grouptarifs {
 	private Float tarifmndf;
 	private Integer specialisation;
 
-	public Grouptarifs(String groupe, Float tarifjour, Float tarifnuit, Float tarifjdf, Float tarifndf, Float tarifmj,
-			Float tarifmn, Float tarifmjdf, Float tarifmndf, Integer specialisation) {
+	public Grouptarifs() {
 		super();
+	}
+
+	public Grouptarifs(String idsociete, String groupe, String libelle, Float tarifjour, Float tarifnuit,
+			Float tarifjdf, Float tarifndf, Float tarifmj, Float tarifmn, Float tarifmjdf, Float tarifmndf,
+			Integer specialisation) {
+		this();
+		this.idsociete = idsociete;
 		this.groupe = groupe;
+		this.libelle = libelle;
 		this.tarifjour = tarifjour;
 		this.tarifnuit = tarifnuit;
 		this.tarifjdf = tarifjdf;
@@ -27,12 +36,28 @@ public class Grouptarifs {
 		this.specialisation = specialisation;
 	}
 
+	public String getIdsociete() {
+		return idsociete;
+	}
+
+	public void setIdsociete(String idsociete) {
+		this.idsociete = idsociete;
+	}
+
 	public String getGroupe() {
 		return groupe;
 	}
 
 	public void setGroupe(String groupe) {
 		this.groupe = groupe;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
 	public Float getTarifjour() {
@@ -135,9 +160,9 @@ public class Grouptarifs {
 	@Override
 	public String toString() {
 		return String.format(
-				"Grouptarifs [groupe=%s, tarifjour=%s, tarifnuit=%s, tarifjdf=%s, tarifndf=%s, tarifmj=%s, tarifmn=%s, tarifmjdf=%s, tarifmndf=%s, specialisation=%s]",
-				groupe, tarifjour, tarifnuit, tarifjdf, tarifndf, tarifmj, tarifmn, tarifmjdf, tarifmndf,
-				specialisation);
+				"Grouptarifs [idsociete=%s, groupe=%s, libelle=%s, tarifjour=%s, tarifnuit=%s, tarifjdf=%s, tarifndf=%s, tarifmj=%s, tarifmn=%s, tarifmjdf=%s, tarifmndf=%s, specialisation=%s]",
+				idsociete, groupe, libelle, tarifjour, tarifnuit, tarifjdf, tarifndf, tarifmj, tarifmn, tarifmjdf,
+				tarifmndf, specialisation);
 	}
 
 }
