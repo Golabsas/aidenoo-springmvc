@@ -123,4 +123,18 @@ public class LoginJDBC implements LoginDAO {
 		logger.info("readSociete( " + login + " ) : " + idsociete);
 		return idsociete;
 	}
+
+	@Override
+	public String readRole(String login) {
+		Login lg = this.search(login);
+		
+		if ( null == lg ) {
+			return "ERROR_SQL_QUERY_ROLE";
+		}
+		
+		String role = lg.getRole();
+		
+		logger.info("readRole( " + login + " ) : " + role);
+		return role;
+	}
 }
