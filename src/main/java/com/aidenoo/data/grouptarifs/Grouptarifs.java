@@ -12,15 +12,13 @@ public class Grouptarifs {
 	private Float tarifmn;
 	private Float tarifmjdf;
 	private Float tarifmndf;
-	private Integer specialisation;
 
 	public Grouptarifs() {
 		super();
 	}
 
 	public Grouptarifs(String idsociete, String groupe, String libelle, Float tarifjour, Float tarifnuit,
-			Float tarifjdf, Float tarifndf, Float tarifmj, Float tarifmn, Float tarifmjdf, Float tarifmndf,
-			Integer specialisation) {
+			Float tarifjdf, Float tarifndf, Float tarifmj, Float tarifmn, Float tarifmjdf, Float tarifmndf) {
 		this();
 		this.idsociete = idsociete;
 		this.groupe = groupe;
@@ -33,7 +31,6 @@ public class Grouptarifs {
 		this.tarifmn = tarifmn;
 		this.tarifmjdf = tarifmjdf;
 		this.tarifmndf = tarifmndf;
-		this.specialisation = specialisation;
 	}
 
 	public String getIdsociete() {
@@ -124,13 +121,6 @@ public class Grouptarifs {
 		this.tarifmndf = tarifmndf;
 	}
 
-	public Integer getSpecialisation() {
-		return specialisation;
-	}
-
-	public void setSpecialisation(Integer specialisation) {
-		this.specialisation = specialisation;
-	}
 
 	@Override
 	public int hashCode() {
@@ -160,9 +150,9 @@ public class Grouptarifs {
 	@Override
 	public String toString() {
 		return String.format(
-				"Grouptarifs [idsociete=%s, groupe=%s, libelle=%s, tarifjour=%s, tarifnuit=%s, tarifjdf=%s, tarifndf=%s, tarifmj=%s, tarifmn=%s, tarifmjdf=%s, tarifmndf=%s, specialisation=%s]",
+				"Grouptarifs [idsociete=%s, groupe=%s, libelle=%s, tarifjour=%s, tarifnuit=%s, tarifjdf=%s, tarifndf=%s, tarifmj=%s, tarifmn=%s, tarifmjdf=%s, tarifmndf=%s]",
 				idsociete, groupe, libelle, tarifjour, tarifnuit, tarifjdf, tarifndf, tarifmj, tarifmn, tarifmjdf,
-				tarifmndf, specialisation);
+				tarifmndf);
 	}
 
 }

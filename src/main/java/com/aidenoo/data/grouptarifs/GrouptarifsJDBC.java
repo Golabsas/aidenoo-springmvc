@@ -29,9 +29,8 @@ class GrouptarifsMapper implements RowMapper<Grouptarifs> {
 				rs.getFloat("tarifmj"),
 				rs.getFloat("tarifmn"),
 				rs.getFloat("tarifmjdf"),
-				rs.getFloat("tarifmndf"),
+				rs.getFloat("tarifmndf")
 				
-				rs.getInt("specialisation")
 				);
 	}
 	
@@ -44,19 +43,18 @@ public class GrouptarifsJDBC implements GrouptarifsDAO {
 	private static final String CREATE_QUERY = "INSERT INTO grouptarifs "
 			+ "(idsociete, groupe, libelle, "
 			+ "tarifjour, tarifnuit, tarifjdf, tarifndf,  "
-			+ "tarifmj, tarifmn, tarifmjdf, tarifmndf, "
-			+ "specialisation) VALUES "
+			+ "tarifmj, tarifmn, tarifmjdf, tarifmndf "
+			+ ") VALUES "
 			+ "(?, ?, ?,  "
 			+ "?, ?, ?, ?,  "
 			+ "?, ?, ?, ?,  "
-			+ "? )";
+			+ " )";
 	
 	private static final String DELETE_QUERY = "DELETE FROM grouptarifs WHERE groupe=? AND idsociete=?";
 	private static final String UPDATE_QUERY = "UPDATE grouptarifs SET "
 			+ "libelle=?, "
 			+ "tarifjour=?, tarifnuit=?, tarifjdf=?, tarifndf=?,  "
-			+ "tarifmj=?, tarifmn=?, tarifmjdf=?, tarifmndf=?, "
-			+ "specialisation=? "
+			+ "tarifmj=?, tarifmn=?, tarifmjdf=?, tarifmndf=? "
 			+ " WHERE groupe=? AND idsociete=?";
 	
 	private static final String _QUERY_ONCE_ = "SELECT * FROM grouptarifs WHERE groupe=";
@@ -74,8 +72,7 @@ public class GrouptarifsJDBC implements GrouptarifsDAO {
 		int res = jdbcTemplate.update(CREATE_QUERY, new Object[] {
 				t.getIdsociete(), t.getGroupe(), t.getLibelle(),
 				t.getTarifjour(), t.getTarifnuit(), t.getTarifjdf(), t.getTarifndf(),
-				t.getTarifmj(), t.getTarifmn(), t.getTarifmjdf(), t.getTarifmndf(),
-				t.getSpecialisation()
+				t.getTarifmj(), t.getTarifmn(), t.getTarifmjdf(), t.getTarifmndf()
 		});
 		
 		logger.info("create()" + t.toString());
@@ -108,7 +105,7 @@ public class GrouptarifsJDBC implements GrouptarifsDAO {
 				t.getLibelle(),
 				t.getTarifjour(), t.getTarifnuit(), t.getTarifjdf(), t.getTarifndf(),
 				t.getTarifmj(), t.getTarifmn(), t.getTarifmjdf(), t.getTarifmndf(),
-				t.getSpecialisation(), t.getGroupe(), t.getIdsociete()
+				t.getGroupe(), t.getIdsociete()
 		});
 		
 		logger.info("update()" + t.toString());
