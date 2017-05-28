@@ -10,6 +10,7 @@
 			<li class="${activeFamserv}"><a href="/list-famservs">Famserv</a></li>
 			<li class="${activeSfamserv}"><a href="/list-sfamservs">Sfamserv</a></li>
 			<li class="${activeServices}"><a href="/list-services">Services</a></li>
+			<li class="${activeGrouptarifss}"><a href="/list-grouptarifss">Grouptarifss</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="/logout">Logout</a></li>
