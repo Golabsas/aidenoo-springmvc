@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import com.aidenoo.data.Login.Login;
 import com.aidenoo.data.Login.LoginDAO;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -47,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/login").permitAll()
-				.antMatchers("/", "/*todo*/**").access("hasRole('USER')").and()
+				.antMatchers("/", "/*todo*/**", "/**").access("hasRole('USER')").and()
 				.formLogin();
 	}
 }
