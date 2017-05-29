@@ -12,7 +12,7 @@ public class SecurityCommon {
 		if (principal instanceof LoggedUser)
 			return ((LoggedUser) principal).getLogin();
 		else
-			throw new RuntimeException("Impossible de recuperrer idSociete");
+			throw new RuntimeException("Impossible de recuperrer l'identifiant de connexion");
 	}
 	
 	public static String retrieveLoggedUserSociete() {
@@ -22,7 +22,7 @@ public class SecurityCommon {
 		if (principal instanceof LoggedUser)
 			return ((LoggedUser) principal).getIdSociete();
 		else
-			throw new RuntimeException("Impossible de recuperer idSociete");
+			throw new RuntimeException("Impossible de recuperer le nom de la societe");
 	}
 
 }

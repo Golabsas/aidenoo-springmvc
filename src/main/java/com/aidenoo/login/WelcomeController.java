@@ -13,19 +13,13 @@ public class WelcomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showLoginPage(ModelMap model) {
 
-		String view = "welcome";
+		String userName = SecurityCommon.retrieveLoggedUserName();
+		String idSociete = SecurityCommon.retrieveLoggedUserSociete();
 
-		try {
-			String userName = SecurityCommon.retrieveLoggedUserName();
-			String idSociete = SecurityCommon.retrieveLoggedUserSociete();
+		model.addAttribute("activeHome", "active");
+		model.addAttribute("name", userName);
+		model.addAttribute("society", idSociete);
 
-			model.addAttribute("activeHome", "active");
-			model.addAttribute("name", userName);
-			model.addAttribute("society", idSociete);
-		} catch (RuntimeException e) {
-			view = "redirect:logout";
-		}
-
-		return view;
+		return "welcome";
 	}
 }
