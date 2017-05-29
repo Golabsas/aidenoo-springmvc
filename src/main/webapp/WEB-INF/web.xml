@@ -30,7 +30,10 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-
+	<!-- Handle Exception inside jsp -->
+	<error-page>
+			<location>/WEB-INF/views/error.jsp</location>
+	</error-page>
 </web-app>
 
 	
