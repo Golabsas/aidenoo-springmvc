@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import com.aidenoo.data.Login.Login;
 import com.aidenoo.data.Login.LoginDAO;
 
-@Service("customUserDetailsService")
+@Service(value = "customUserDetailsService")
 public class LoggedUserDetail implements UserDetailsService {
 
 	@Autowired
