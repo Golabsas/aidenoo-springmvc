@@ -37,7 +37,7 @@ public class LoginJDBC implements LoginDAO {
 	}
 	
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public String readPassword(String login) {
