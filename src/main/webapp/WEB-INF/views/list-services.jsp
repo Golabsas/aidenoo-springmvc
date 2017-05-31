@@ -8,8 +8,8 @@
 				<tr>
 		 		<th>index</th> 
 					<th>Type</th>
-					<th>Libelle</th>
 					<th>Groupe de Tarif</th>
+					<th>Libelle</th>
 					<th>Specialisation</th>
 					<th></th>
 				</tr>
