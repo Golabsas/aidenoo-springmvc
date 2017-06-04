@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.aidenoo.security.SecurityCommon;
+import com.aidenoo.security.SecurityService;
 
 @Controller
 public class GrouptarifsController {
 
 	@Autowired
 	GrouptarifsService service;
+
+	@Autowired
+	private SecurityService securityService;
 
 	private List<Grouptarifs> grouptarifss;
 
@@ -49,7 +52,7 @@ public class GrouptarifsController {
 			return "grouptarifs";
 		}
 
-		grouptarifs.setIdsociete(SecurityCommon.retrieveLoggedUserSociete());
+		grouptarifs.setIdsociete(securityService.retrieveLoggedUserSociete());
 
 		service.add(grouptarifs);
 		model.clear();
@@ -81,7 +84,7 @@ public class GrouptarifsController {
 			return "grouptarifs";
 		}
 
-		grouptarifs.setIdsociete(SecurityCommon.retrieveLoggedUserSociete());
+		grouptarifs.setIdsociete(securityService.retrieveLoggedUserSociete());
 
 		service.update(grouptarifs);
 		model.clear();

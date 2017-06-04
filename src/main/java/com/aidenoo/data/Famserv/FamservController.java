@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.aidenoo.security.SecurityCommon;
+import com.aidenoo.security.SecurityService;
 
 @Controller
 public class FamservController {
 
 	@Autowired
 	FamservService service;
+
+	@Autowired
+	private SecurityService securityService;
 	
 	private List<Famserv> famservs;
 
@@ -49,7 +52,7 @@ public class FamservController {
 			return "famserv";
 		}
 
-		famserv.setIdsociete(SecurityCommon.retrieveLoggedUserSociete());
+		famserv.setIdsociete(securityService.retrieveLoggedUserSociete());
 
 		service.add(famserv);
 		model.clear();
@@ -81,7 +84,7 @@ public class FamservController {
 			return "famserv";
 		}
 
-		famserv.setIdsociete(SecurityCommon.retrieveLoggedUserSociete());
+		famserv.setIdsociete(securityService.retrieveLoggedUserSociete());
 
 		service.update(famserv);
 		model.clear();

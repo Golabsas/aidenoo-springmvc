@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.aidenoo.security.SecurityCommon;
+import com.aidenoo.security.SecurityService;
 
 @Controller
 @SessionAttributes("name")
@@ -25,6 +25,9 @@ public class TodoController {
 	
 	@Autowired
 	TodoService service;
+
+	@Autowired
+	private SecurityService securityService;
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
@@ -34,7 +37,7 @@ public class TodoController {
 
 	@RequestMapping(value="/list-todos", method=RequestMethod.GET)
 	public String showLoginPage(ModelMap model) {
-		model.addAttribute("todos", service.retrieveTodos(SecurityCommon.retrieveLoggedUserName()));
+		model.addAttribute("todos", service.retrieveTodos(securityService.retrieveLoggedUserName()));
 		model.addAttribute("activeTodos", "active");
 		return "list-todos";
 	}
@@ -42,7 +45,7 @@ public class TodoController {
 	
 	@RequestMapping(value="/add-todo", method=RequestMethod.GET)
 	public String showTodoPage(ModelMap model) {
-		model.addAttribute("todo", new Todo(0, SecurityCommon.retrieveLoggedUserName(), "Default Desc" , new Date(), false));
+		model.addAttribute("todo", new Todo(0, securityService.retrieveLoggedUserName(), "Default Desc" , new Date(), false));
 		return "todo";
 	}
 	
@@ -52,7 +55,7 @@ public class TodoController {
 		if (result.hasErrors())
 			return "todo";
 		
-		service.addTodo(SecurityCommon.retrieveLoggedUserName(), todo.getDesc(), new Date(), false);
+		service.addTodo(securityService.retrieveLoggedUserName(), todo.getDesc(), new Date(), false);
 		model.clear();
 		return "redirect:list-todos";
 	}
@@ -79,7 +82,7 @@ public class TodoController {
 			return "todo";
 		}
 		
-		todo.setUser(SecurityCommon.retrieveLoggedUserName());
+		todo.setUser(securityService.retrieveLoggedUserName());
 		
 		service.updateTodo(todo);
 		model.clear();

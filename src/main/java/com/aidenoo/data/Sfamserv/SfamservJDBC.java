@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.aidenoo.security.SecurityCommon;
+import com.aidenoo.security.SecurityService;
 
 class FamservMapper implements RowMapper<Sfamserv> {
 
@@ -37,6 +37,9 @@ public class SfamservJDBC implements SfamservDAO {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private SecurityService securityService;
 
 	@Override
 	public boolean create(Sfamserv t) {
@@ -56,14 +59,14 @@ public class SfamservJDBC implements SfamservDAO {
 	public List<Sfamserv> read() {
 		logger.info("read()");
 		return jdbcTemplate.query(
-				_SELECT_ALL_ + "'" + SecurityCommon.retrieveLoggedUserSociete() + "'" , 
+				_SELECT_ALL_ + "'" + securityService.retrieveLoggedUserSociete() + "'" , 
 				new FamservMapper());
 	}
 
 	@Override
 	public Sfamserv search(String sfam) {
 		final String SQL_QUERY = _QUERY_ONCE_ + "'"+sfam+"'" + 
-				" AND idsociete='" + SecurityCommon.retrieveLoggedUserSociete() + "'"; 
+				" AND idsociete='" + securityService.retrieveLoggedUserSociete() + "'"; 
 		
 		List<Sfamserv> famservs = jdbcTemplate.query(SQL_QUERY, new FamservMapper());
 		Sfamserv result = famservs.get(0);

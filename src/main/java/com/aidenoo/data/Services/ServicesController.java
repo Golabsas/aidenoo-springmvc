@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.aidenoo.security.SecurityCommon;
+import com.aidenoo.security.SecurityService;
 
 @Controller
 public class ServicesController {
 
 	@Autowired
 	ServicesService sService;
+
+	@Autowired
+	private SecurityService securityService;
 
 	private List<Services> servicess;
 
@@ -49,7 +52,7 @@ public class ServicesController {
 			return "services";
 		}
 
-		services.setIdsociete(SecurityCommon.retrieveLoggedUserSociete());
+		services.setIdsociete(securityService.retrieveLoggedUserSociete());
 
 		sService.add(services);
 		model.clear();
@@ -81,7 +84,7 @@ public class ServicesController {
 			return "services";
 		}
 
-		services.setIdsociete(SecurityCommon.retrieveLoggedUserSociete());
+		services.setIdsociete(securityService.retrieveLoggedUserSociete());
 
 		sService.update(services);
 		model.clear();

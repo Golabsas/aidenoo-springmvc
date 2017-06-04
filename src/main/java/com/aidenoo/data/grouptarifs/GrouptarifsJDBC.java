@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.aidenoo.security.SecurityCommon;
+import com.aidenoo.security.SecurityService;
 
 class GrouptarifsMapper implements RowMapper<Grouptarifs> {
 
@@ -63,6 +63,9 @@ public class GrouptarifsJDBC implements GrouptarifsDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	private SecurityService securityService;
+
 	@Override
 	public boolean create(Grouptarifs t) {
 		
@@ -83,14 +86,14 @@ public class GrouptarifsJDBC implements GrouptarifsDAO {
 	public List<Grouptarifs> read() {
 		logger.info("read()");
 		return jdbcTemplate.query(
-				_SELECT_ALL_ + "'" + SecurityCommon.retrieveLoggedUserSociete() + "'" , 
+				_SELECT_ALL_ + "'" + securityService.retrieveLoggedUserSociete() + "'" , 
 				new GrouptarifsMapper());
 	}
 
 	@Override
 	public Grouptarifs search(String groupe) {
 		final String SQL_QUERY = _QUERY_ONCE_ + "'"+groupe+"'" + 
-				" AND idsociete='" + SecurityCommon.retrieveLoggedUserSociete() + "'"; 
+				" AND idsociete='" + securityService.retrieveLoggedUserSociete() + "'"; 
 		
 		List<Grouptarifs> famservs = jdbcTemplate.query(SQL_QUERY, new GrouptarifsMapper());
 		Grouptarifs result = famservs.get(0);
