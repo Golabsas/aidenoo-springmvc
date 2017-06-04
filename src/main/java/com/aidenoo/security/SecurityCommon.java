@@ -4,8 +4,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SecurityCommon {
-	public static String retrieveLoggedUserName() {
+public class SecurityCommon implements SecurityService {
+	
+	SecurityCommon() { super(); }
+	
+	public String retrieveLoggedUserName() {
 		Object principal = SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
 		
@@ -15,7 +18,7 @@ public class SecurityCommon {
 			throw new RuntimeException("Impossible de recuperrer l'identifiant de connexion");
 	}
 	
-	public static String retrieveLoggedUserSociete() {
+	public String retrieveLoggedUserSociete() {
 		Object principal = SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
 		
